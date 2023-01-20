@@ -1,4 +1,4 @@
-output_directory: results6
+output_directory: results
 email: chrisarnold82@gmail.com
 min_ref_count_for_summary: 60
 min_ref_counts_per_profession:
