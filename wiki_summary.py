@@ -1,0 +1,61 @@
+import wikipedia
+import sys
+import wiki_by_birth_year
+import db_wrapper
+from config import cfg 
+
+def get_summary(title):
+    summary=""
+
+    print(f'Getting summary for {title}')
+
+    try:
+        page = wikipedia.page(title, pageid=None, auto_suggest=False, redirect=False, preload=False)
+        summary = page.summary
+    except wikipedia.exceptions.RedirectError:
+        print(f'Skipping title ${title} because it will redirect')
+    except wikipedia.exceptions.PageError:
+        print(f'Skipping title ${title} because of PageError')
+    except KeyError:
+        print("Skipping due to KeyError")
+
+    return summary
+
+
+# For all people born in 'year', with reference count above a threshold, does a wiki
+# lookup on the page to get the summary and inserts the information
+# into the 'people' table
+def insert_summaries(year):
+    if not wiki_by_birth_year.have_birth_year_file(year):
+        print(f'ERROR: Birth year file for year {year} was not found')
+        return False
+
+    db_wrapper.initialize_tables()
+
+    good = 0
+    skip_low_ref = 0
+    skip_already_have = 0
+
+    # better use of db connection
+    # skip the api call if the entry is already in the dB?
+
+    for title, ref_count in wiki_by_birth_year.iterate_birth_year_file(year):
+        if ref_count >= cfg.min_ref_count_for_summary:
+            with db_wrapper.DBManager() as cur:
+                res = cur.execute("select title from people where title = ?", (title,) )
+
+                if res.fetchone():
+                    print(f'Summary for {title} already exists in the DB; skipping')
+                    sys.stdout.flush()
+                    skip_already_have += 1
+                else:
+                    summary = get_summary(title)
+                    cur.execute("insert or ignore into people values (?, ?, ?, ?, ?, ?)",
+                                (title, None, year, ref_count, summary, None))
+                    good += 1
+        else:
+            skip_low_ref += 1
+
+    print(f'Inserted {good} good entries, skipped {skip_low_ref} low reference entries, '
+          f'{skip_already_have} entries we already have')
+    return True

@@ -1,0 +1,10 @@
+output_directory: results6
+email: chrisarnold82@gmail.com
+min_ref_count_for_summary: 60
+min_ref_counts_per_profession:
+  'football player': 500
+  'wrestler': 500
+min_ref_counts_per_sole_profession:
+  'musician': 15
+  'politician': 20
+
