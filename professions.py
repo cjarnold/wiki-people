@@ -12,6 +12,7 @@ def apply_keyword_to_professions():
     sys.stdout.flush() 
     
     with db_wrapper.DBManager() as cur, open(csv_name, newline='') as csvfile:
+        # start fresh
         cur.execute('DELETE FROM people_to_profession')
 
         reader = csv.DictReader(csvfile)
@@ -24,6 +25,7 @@ def apply_keyword(cur, keyword, profession):
     insert_cursor = cur.connection.cursor()
 
     # todo: binding the query parameter was not working for this first query.  Look into it.
+    # todo: the substr length should be configurable
     for row in cur.execute("select title from people where substr(summary, 0, 300) like '% " + keyword + "%'"):
         title = row[0]
         insert_cursor.execute("insert or ignore into people_to_profession values (?, ?)", (title, profession))

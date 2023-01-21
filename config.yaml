@@ -1,5 +1,5 @@
 output_directory: results
-email: chrisarnold82@gmail.com
+email: you@example.com
 min_ref_count_for_summary: 60
 min_ref_counts_per_profession:
   'football player': 500

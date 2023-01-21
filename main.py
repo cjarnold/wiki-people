@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 import wikipediaapi
 import wikipedia
@@ -9,6 +10,7 @@ import wiki_summary
 import professions
 import image_retriever
 import os
+import re
 from config import cfg 
 
 sys.stdin.reconfigure(encoding='utf-8')
@@ -20,63 +22,69 @@ def do_year_range(year_start, year_end):
         wiki_by_birth_year.write_birth_year_file(year)
         wiki_summary.insert_summaries(year)
 
-    print('\n')
+def validate_summary_arg(value):
+    value = value.lstrip()
+    result = re.match('^(-?\d+):(-?\d+)$', value)
 
-    professions.apply_keyword_to_professions()
-    professions.filter_professions(cfg.min_ref_counts_per_profession)
-    professions.filter_professions(cfg.min_ref_counts_per_sole_profession, must_be_sole_profession=True)
+    if result:
+        v1 = int(result[1])
+        v2 = int(result[2])
 
-    # This table needs to be rebuilt to remove the now deleted people
-    professions.apply_keyword_to_professions()
+        min = -1200
+        max = 2050
+        if v1 > v2 or v1 < -1200 or v2 > 2050:
+            print(f'summary year range must be within {min} to {max}')
+            raise ValueError
+        else:
+            return (v1, v2)
+    else:
+        print(f"summary argument must be of format 'YEAR-START:YEAR-END'")
+        raise ValueError
 
-    print('\n')
-
-    image_retriever.get_images()
-
-possible_actions = ['db_summary', 'update_professions']
+# argparse cannot the "-" sign to signify negative numeric values,
+# so we need this preprocessing:
+for i, arg in enumerate(sys.argv):
+    if (arg[0] == '-') and arg[1].isdigit():
+        sys.argv[i] = ' ' + arg
 
 parser = argparse.ArgumentParser()
+group = parser.add_mutually_exclusive_group(required=True)
 
-parser.add_argument("-a", "--action",
+group.add_argument("-s", "--summary",
                     required=False,
-                    choices = possible_actions,
-                    help="An action")
+                    type=validate_summary_arg,
+                    metavar="YEAR-START:YEAR-END",
+                    help="Fetch a summary and for all people whose birth year is within the provided range and reference count meets the threshold defined in config.yaml")
 
-parser.add_argument("-r", "--retrieve",
+group.add_argument("-i", "--images",
                     required=False,
-                    type=int,
-                    help="Retrieve the name and reference counts"
-                    "of all humans born in this year")
+                    action="store_true",
+                    help="Fetch images for all people in the DB whose image is not already downloaded")
 
-parser.add_argument("-i", "--insert",
+group.add_argument("-a", "--assign-professions",
                     required=False,
-                    type=int,
-                    help="Do summary lookups of the humans born in this year")
+                    action="store_true",
+                    help="Refresh the people_to_professions table based on keyword_to_professions.csv")
 
-parser.add_argument("-s", "--year-start",
-                    required=True,
-                    type=int,
-                    help="Starting year")
-
-parser.add_argument("-e", "--year-end",
-                    required=True,
-                    type=int,
-                    help="Ending year")
-                   
+group.add_argument("-f", "--filter-professions",
+                    required=False,
+                    action="store_true",
+                    help="Remove people from the DB whose reference count does not meet the threshold defined in the per-profession reference count thresholds in config.yaml")
+              
 args = parser.parse_args()
 
 os.makedirs(cfg.output_directory, exist_ok=True)
 
-if args.action == "db_summary":
-    db_wrapper.print_summary()
-elif args.action == "update_professions":
+if args.summary:
+    do_year_range(*args.summary)
+elif args.assign_professions:
     professions.apply_keyword_to_professions()
-elif args.action == "iterate_summaries":
-    pass
-    #iterate_summaries()
-elif args.retrieve:
-    wiki_by_birth_year.write_birth_year_file(args.retrieve)
-elif args.insert:
-    wiki_summary.insert_summaries(args.insert)
-else:
-    do_year_range(args.year_start, args.year_end)
+elif args.filter_professions:
+    professions.filter_professions(cfg.min_ref_counts_per_profession)
+    professions.filter_professions(cfg.min_ref_counts_per_sole_profession, must_be_sole_profession=True)
+    # This table needs to be rebuilt to remove the now deleted people
+    professions.apply_keyword_to_professions()
+elif args.images:
+    image_retriever.get_images()
+
+

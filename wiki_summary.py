@@ -36,9 +36,6 @@ def insert_summaries(year):
     skip_low_ref = 0
     skip_already_have = 0
 
-    # better use of db connection
-    # skip the api call if the entry is already in the dB?
-
     for title, ref_count in wiki_by_birth_year.iterate_birth_year_file(year):
         if ref_count >= cfg.min_ref_count_for_summary:
             with db_wrapper.DBManager() as cur:
