@@ -22,6 +22,8 @@ def do_year_range(year_start, year_end):
         wiki_by_birth_year.write_birth_year_file(year)
         wiki_summary.insert_summaries(year)
 
+    professions.apply_keyword_to_professions()
+
 def validate_summary_arg(value):
     value = value.lstrip()
     result = re.match('^(-?\d+):(-?\d+)$', value)
@@ -54,7 +56,7 @@ group.add_argument("-s", "--summary",
                     required=False,
                     type=validate_summary_arg,
                     metavar="YEAR-START:YEAR-END",
-                    help="Fetch a summary and for all people whose birth year is within the provided range and reference count meets the threshold defined in config.yaml")
+                    help="Fetch a summary from Wikipedia and store it in the DB for all people whose birth year is within the provided range and reference count meets the threshold defined in config.yaml")
 
 group.add_argument("-i", "--images",
                     required=False,
@@ -70,6 +72,21 @@ group.add_argument("-f", "--filter-professions",
                     required=False,
                     action="store_true",
                     help="Remove people from the DB whose reference count does not meet the threshold defined in the per-profession reference count thresholds in config.yaml")
+
+group.add_argument("-p", "--profession-counts",
+                    required=False,
+                    action="store_true",
+                    help="List how many people each profession applies to")
+
+group.add_argument("-m", "--profession-members",
+                    metavar="PROFESSION",
+                    required=False,
+                    help="List the members of PROFESSION, sorted by reference count")
+
+group.add_argument("-d", "--details",
+                    metavar="PERSON",
+                    required=False,
+                    help="Print the details available for PERSON")
               
 args = parser.parse_args()
 
@@ -80,11 +97,13 @@ if args.summary:
 elif args.assign_professions:
     professions.apply_keyword_to_professions()
 elif args.filter_professions:
-    professions.filter_professions(cfg.min_ref_counts_per_profession)
-    professions.filter_professions(cfg.min_ref_counts_per_sole_profession, must_be_sole_profession=True)
-    # This table needs to be rebuilt to remove the now deleted people
-    professions.apply_keyword_to_professions()
+    professions.do_filter()
 elif args.images:
     image_retriever.get_images()
-
+elif args.profession_counts:
+    professions.print_profession_summary()
+elif args.details:
+    wiki_summary.print_details(args.details)
+elif args.profession_members:
+    professions.print_profession_members(args.profession_members)
 

@@ -13,12 +13,6 @@ class DBManager():
         self.conn.commit()
         self.conn.close()
 
-def print_summary():
-    with DBManager() as cur:
-        res = cur.execute("select count(1) from people")
-        count = res.fetchone()[0]
-        print(f'Database contains {count} entries')
-
 # Creates the necessary sqlite tables if they don't already exist
 def initialize_tables():
     with DBManager() as cur:
@@ -40,3 +34,9 @@ def initialize_tables():
                 UNIQUE(title, profession)
             )
         ''')
+
+def get_people_count():
+    with DBManager() as cur:
+        res = cur.execute("select count(1) from people")
+        count = res.fetchone()[0]
+        return int(count)

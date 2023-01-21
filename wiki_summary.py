@@ -2,6 +2,7 @@ import wikipedia
 import sys
 import wiki_by_birth_year
 import db_wrapper
+import professions
 from config import cfg 
 
 def get_summary(title):
@@ -55,4 +56,29 @@ def insert_summaries(year):
 
     print(f'Inserted {good} good entries, skipped {skip_low_ref} low reference entries, '
           f'{skip_already_have} entries we already have')
+    print(f'Database now contains {db_wrapper.get_people_count()} people')
+
     return True
+
+def print_details(title):
+    with db_wrapper.DBManager() as cur:
+        query = '''
+            select birth_year, reference_count, summary, image_fname from people
+            where title = ?
+            '''
+        res = cur.execute(query, (title,))
+        row = res.fetchone()
+        if row is None:
+            print(f'{title} is not in the database')
+        else:
+            print(f'{title}:')
+            print(f'  Born: {row[0]}')
+            print(f'  Reference count: {row[1]}')
+            print(f'  Image: {row[3]}')
+
+            print(f'  Professions: ', end = '')
+            prof_gen = (p for p in professions.get_professions(title))
+            print(', '.join(prof_gen))
+
+            print(f'\n{row[2]}')
+
