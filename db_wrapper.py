@@ -1,3 +1,8 @@
+# The DBManager class should be used as a context manager
+# to connect to the sqlite DB and get a cursor.
+# The transaction is committed and the connection is closed
+# down upon exiting the context.
+
 import sqlite3
 from config import cfg 
 
@@ -19,7 +24,6 @@ def initialize_tables():
         cur.execute('''
             CREATE TABLE IF NOT EXISTS people (
                 title TEXT PRIMARY KEY,
-                name TEXT,
                 birth_year INTEGER NOT NULL,
                 reference_count INTEGER NOT NULL,
                 summary TEXT,
@@ -37,6 +41,6 @@ def initialize_tables():
 
 def get_people_count():
     with DBManager() as cur:
-        res = cur.execute("select count(1) from people")
+        res = cur.execute("select count(title) from people")
         count = res.fetchone()[0]
         return int(count)

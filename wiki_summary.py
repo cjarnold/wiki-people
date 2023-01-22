@@ -1,8 +1,9 @@
 import wikipedia
-import sys
 import wiki_by_birth_year
 import db_wrapper
 import professions
+import sys
+
 from config import cfg 
 
 def get_summary(title):
@@ -11,7 +12,8 @@ def get_summary(title):
     print(f'Getting summary for {title}')
 
     try:
-        page = wikipedia.page(title, pageid=None, auto_suggest=False, redirect=False, preload=False)
+        page = wikipedia.page(title, pageid=None, auto_suggest=False,
+                              redirect=False, preload=False)
         summary = page.summary
     except wikipedia.exceptions.RedirectError:
         print(f'Skipping title ${title} because it will redirect')
@@ -21,7 +23,6 @@ def get_summary(title):
         print("Skipping due to KeyError")
 
     return summary
-
 
 # For all people born in 'year', with reference count above a threshold, does a wiki
 # lookup on the page to get the summary and inserts the information
@@ -48,8 +49,8 @@ def insert_summaries(year):
                     skip_already_have += 1
                 else:
                     summary = get_summary(title)
-                    cur.execute("insert or ignore into people values (?, ?, ?, ?, ?, ?)",
-                                (title, None, year, ref_count, summary, None))
+                    cur.execute("insert or ignore into people values (?, ?, ?, ?, ?)",
+                                (title, year, ref_count, summary, None))
                     good += 1
         else:
             skip_low_ref += 1

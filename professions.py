@@ -1,9 +1,12 @@
+# Functionality to assign and filter by profession.
+
 import sys
 import sqlite3
 import db_wrapper
 import csv
 import yaml
 import os.path
+
 from config import cfg
 
 csv_name='keyword_to_professions.csv'
@@ -25,11 +28,12 @@ def apply_keyword_to_professions():
 def apply_keyword(cur, keyword, profession):
     insert_cursor = cur.connection.cursor()
 
-    # todo: binding the query parameter was not working for this first query.  Look into it.
-    # todo: the substr length should be configurable
-    for row in cur.execute("select title from people where substr(summary, 0, 300) like '% " + keyword + "%'"):
+    query = "select title from people where substr(summary, 0, 300) like ?"
+    #query = "select title from people where substr(summary, 0, 300) like '% " + keyword + "%'" 
+    for row in cur.execute(query, ['%'+keyword+'%']):
         title = row[0]
-        insert_cursor.execute("insert or ignore into people_to_profession values (?, ?)", (title, profession))
+        insert_cursor.execute("insert or ignore into people_to_profession values (?, ?)",
+                              (title, profession))
 
     insert_cursor.close()
 

@@ -6,10 +6,8 @@
 # 'iterate_birth_year_file'
 
 import sys
-import os.path
 import os
 import re
-from config import cfg 
 
 # Two 3rd party wikipedia modules are used, based on unique functionality.
 
@@ -23,6 +21,7 @@ import wikipediaapi
 # metric to filter out likely unimportant historical figures.
 import wikipedia
 
+from config import cfg 
 
 wikipediaapi.log.setLevel(level=wikipediaapi.logging.DEBUG)
 out_hdlr = wikipediaapi.logging.StreamHandler(sys.stderr)
@@ -71,7 +70,8 @@ def write_member(title, birth_year, counter, myfile):
 def get_reference_count(title):
     ref_count = 0
     try:
-        page = wikipedia.page(title, pageid=None, auto_suggest=False, redirect=False, preload=False)
+        page = wikipedia.page(title, pageid=None, auto_suggest=False,
+                              redirect=False, preload=False)
         ref_count = len(page.references)
     except wikipedia.exceptions.RedirectError:
         print(f'Skipping title ${title} because it will redirect')
@@ -81,16 +81,23 @@ def get_reference_count(title):
     return ref_count
 
 def year_to_category_name(year):
-    # earliest 1152 BC
-    # format: https://en.wikipedia.org/wiki/Category:9_BC_births
-    # 0 is special? https://en.wikipedia.org/wiki/Category:0s_BC_births
-
-    # before AD 11, the format is https://en.wikipedia.org/wiki/Category:AD_3_births
-
-    # Special placeholder years:
-    # 3000: Category:Year_of_birth_missing_(living_people)
-    # 3001: Category:Year_of_birth_missing
-    # 3002: Category:Year_of_birth_unknown
+    # Wikipedia has categories for all the people born in each year of history.
+    #
+    # Example: https://en.wikipedia.org/wiki/Category:1982_births
+    #
+    # For BC it is like:
+    # https://en.wikipedia.org/wiki/Category:9_BC_births
+    # The earliest Wikipedia has is 1152 BC.
+    # 0 is special: https://en.wikipedia.org/wiki/Category:0s_BC_births
+    #
+    # From AD 1-11, the format is unique: https://en.wikipedia.org/wiki/Category:AD_<year>_births
+    #
+    # There are many people that have an unknown birth year.  Wikipedia puts these
+    # into 3 special categories.  I've mapped these to special placeholder years
+    # 3000, 3001, and 3002:
+    #   3000: Category:Year_of_birth_missing_(living_people)
+    #   3001: Category:Year_of_birth_missing
+    #   3002: Category:Year_of_birth_unknown
 
     if year == 3000:
         return 'Category:Year_of_birth_missing_(living_people)'

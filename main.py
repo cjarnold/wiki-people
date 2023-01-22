@@ -22,6 +22,7 @@ def do_year_range(year_start, year_end):
         wiki_by_birth_year.write_birth_year_file(year)
         wiki_summary.insert_summaries(year)
 
+    print('')
     professions.apply_keyword_to_professions()
 
 def validate_summary_arg(value):

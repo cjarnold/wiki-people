@@ -1,9 +1,12 @@
+# Functionality to retrieve the "infobox" image from a person's Wikipedia page.  
+
 import db_wrapper
 import sys
 import wikipedia
 import re
 import os.path
 import requests
+
 from config import cfg 
 
 img_suffix_pattern = re.compile('.+\.(\w+)$')
@@ -42,10 +45,10 @@ def get_image(title, cur):
         update_img_in_db(title, "no infobox", cur)
         return None
 
-    index_start = html.find(' src="//upload.wikimedia.org/wikipedia/', infobox_start, infobox_start + 5000)
+    index_start = html.find(' src="//upload.wikimedia.org/wikipedia/',
+                            infobox_start, infobox_start + 5000)
     if index_start == -1:
         print("Didn't find the start")
-        #update_img_in_db(title, "no image available: " + html[infobox_start:infobox_start+5000], cur)
         update_img_in_db(title, "no image available", cur)        
         return None
 
@@ -80,7 +83,8 @@ def get_html(title):
     html=""
 
     try:
-        page = wikipedia.page(title, pageid=None, auto_suggest=False, redirect=False, preload=False)
+        page = wikipedia.page(title, pageid=None, auto_suggest=False,
+                              redirect=False, preload=False)
         html = page.html()
     except wikipedia.exceptions.RedirectError:
         print(f'Skipping title ${title} because it will redirect')
