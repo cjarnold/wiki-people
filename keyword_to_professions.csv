@@ -1,288 +1,285 @@
 keyword,profession
-footballer,soccer player
-football player,football player
-football ,football player
-actress,actor
-actor,actor
-politician,politician
-prime minister,leader
-president,leader
-baseball,baseball player
-singer,musician
-wrestler,wrestler
-figure skater,figure skater
-cricketer,cricketer
-ski racer,skier
-skier,skier
-basketball,basketball player
-runner,runner
-boxer,fighter
-chess,chess player
-model,model
-royal family,leader
-ice hockey,ice hockey player
-soccer,soccer player
-writer,author
-author,author
-film director,filmmaker
-rapper,musician
-entrepreneur,entrepreneur
-cyclist,cyclist
-bicycle racer,cyclist
-swimmer,swimmer
-professor,scholar
-magician,magician
-track and field,track and field star
-tennis,tennis player
-mixed martial artist,fighter
-comedian,comedian
-filmmaker,filmmaker
-songwriter,musician
-musician,musician
-supermodel,model
-television personality,actor
-activist,activist
-kickboxer,kickboxer
-composer,musician
-racing driver,racing driver
-speed skating,speed skater
-paleontologist,paleontologist
-criminal,criminal
-skateboarder,skateboarder
-journalist,journalist
-goalkeeper,soccer player
-badminton,badminton player
-pianist,musician
-gymnast,gymnast
-video game player,video game player
-dancer,dancer
-movie director,filmmaker
-screenwriter,author
-astronomer,astronomer
-physicist,physicist
-engineer,engineer
-mathematician,mathematician
-chemist,chemist
-naturalist,naturalist
-geologist,geologist
-biologist,biologist
-philosopher,philosopher
-polymath,polymath
-inventor,inventor
-electrical engineer,electrical engineer
-mechanical engineer,mechanical engineer
-cosmologist,cosmologist
-meteorologist,meteorologist
-geneticist,geneticist
-zoologist,zoologist
-computer scientist,computer scientist
-botanist,botanist
-psychiatrist,psychiatrist
-psychologist,psychologist
-physician,physician
-geographer,geographer
-immunologist,immunologist
-composer,musician
-media personality,actor
+abolitionist,leader
+abstract artist,artist
 academic,scholar
-scholar,scholar
-king,leader
-queen,leader
-emperor,leader
-painter,artist
-ruler,leader
-poet,author
-clergyman,religious figure
-theologian,religious figure
+activist,activist
+actor,actor
+actress,actor
+adventurer,adventurer
+American artist,artist
+anarchist,criminal
+anthropologist,anthropologist
+archaeologist,archaeologist
+architect,architect
+aristocrat,leader
+arrested,criminal
+astronaut,astronaut
+astronomer,astronomer
+astrophysicist,astrophysicist
+attorney,lawyer
+author,author
+bacteriologist,bacteriologist
+badminton,badminton player
+banker,banker
+baron,entrepreneur
+baseball,baseball player
+basketball,basketball player
+biathlete,biathlete
+bicycle racer,cyclist
+biochemist,biochemist
+biologist,biologist
 biship,religious figure
 bishop,religious figure
-priest,religious figure
-minister,religious figure
-social media personality,influencer
-live artist,artist
-statesman,leader
-playwright,author
-sculptor,artist
-governor,leader
-prince,leader
-illustrator,artist
-volleyball player,volleyball player
-personality,influencer
-recording artist,musician
-sprinter,runner
-visual artist,artist
-comic book artist,artist
-hip hop artist,musician
-investor,investor
-pair skater,skater
-curler,curler
-motorcycle racer,motorcycle racer
+BMX rider,BMX rider
+botanist,botanist
+boxer,fighter
+broadcaster,personality
+business,entrepreneur
+car driver,race car driver
 cardiologist,cardiologist
-political figure,politician
-rugby,rugby player
-economist,economist
-sociologist,sociologist
-graphic artist,artist
-photographer,photographer
-mobster,criminal
-murderer,criminal
-killer,criminal
-youtuber,youtuber
-YouTube,youtuber
-missionary,religious figure
-golfer,golfer
-snooker,snooker player
-snowboarder,snowboarder
+cartographer,cartographer
+cartoonist,artist
+Catholic church,religious figure
+cellist,musician
+ceo,ceo
+chef,chef
+chemist,chemist
+chess,chess player
+choreographer,choreographer
+clergyman,religious figure
+comedian,comedian
+comic book artist,artist
+comics artist,artist
+commanders,leader
+composer,musician
+computer intelligence consultant,computer scientist
+computer programmer,computer scientist
+computer scientist,computer scientist
+conductor,musician
+conservationist,conservationist
+convicted,criminal
+cosmologist,cosmologist
+cosmonaut,astronaut
+cricketer,cricketer
+crime boss,criminal
+criminal,criminal
+curler,curler
+cyclist,cyclist
+dancer,dancer
 darts,darts player
+designer,designer
+diarist,diarist
+diplomat,politician
+drug lord,criminal
+drummer,musician
+economist,economist
+electrical engineer,electrical engineer
+emperor,leader
+engineer,engineer
+entertainer,personality
+entrepreneur,entrepreneur
+evangelist,religious figure
+explorer,explorer
+fashion designer,fashion designer
 fencer,fencer
-racquetball,racquetball player
-triathlete,runner
-sailor,sailor
-lawyer,lawyer
-attorney,lawyer
-political,politician
+field hockey,field hockey
+figure skater,figure skater
+film critic,author
+film director,filmmaker
+film maker,director
+filmmaker,filmmaker
+first lady,leader
+football ,football player
+football player,football player
+footballer,soccer player
+founded,leader
+founder,leader
+founding father,leader
+fraudster,criminal
+fugitive,criminal
+game designer,game designer
+game show host,broadcaster
+general,leader
+geneticist,geneticist
+geographer,geographer
+geologist,geologist
+goalkeeper,soccer player
+golfer,golfer
+government official,leader
+governor,leader
+graphic artist,artist
+guitarist,musician
+gunfighter,criminal
+gymnast,gymnast
+head of the,leader
+hip hop artist,musician
+historian,historian
+horse racing,horse racer
+House of Representatives,politician
+human rights,leader
+ice hockey,ice hockey player
+illusionist,magician
+illustrator,artist
+immunologist,immunologist
+industrialist,entrepreneur
+infectious diseases,infectious diseases scientist
+inventor,inventor
+investor,investor
+Jiu-Jitsu,fighter
+journalist,journalist
+judge,judge
+justice of the Supreme Court,judge
+kickboxer,kickboxer
+killer,criminal
+king,leader
+law enforcement,leader
 lawman,leader
-abolitionist,leader
+lawyer,lawyer
 leader,leader
-officer,leader
+lecturer,lecturer
+legislator,politician
+linguist,linguist
+live artist,artist
+live streamer,youtuber
+mafia boss,criminal
+magician,magician
+manga artist,artist
+Marine,soldier
+mathematician,mathematician
+mayor,leader
+mechanical engineer,mechanical engineer
+media personality,actor
+medical doctor,doctor
+meteorologist,meteorologist
+microbiologist,microbiologist
+minister,religious figure
+missionary,religious figure
+mixed martial artist,fighter
+mobster,criminal
+model,model
+modernist artist,artist
+motorcycle racer,motorcycle racer
+motorcycle road racer,motorcycle road racer
+movie director,filmmaker
+murder,criminal
+murderer,criminal
+music executive,musician
+music producer,musician
+musician,musician
+naturalist,naturalist
+neurobiology,neurobiology
 neurologist,neurologist
 neuroscientist,neurologist
-murder,criminal
-founding father,leader
-general,leader
-explorer,explorer
-law enforcement,leader
-philanthropist,philanthropist
-modernist artist,artist
-public speaker,leader
-outlaw,criminal
-gunfighter,criminal
-socialite,influencer
-head of the,leader
-industrialist,entrepreneur
-founder,leader
-business,entrepreneur
-architect,architect
-soldier,soldier
-showman,influencer
-nurse,nurse
-founded,leader
-fashion designer,fashion designer
-banker,banker
-psychotherapist,psychotherapist
 novelist,author
-computer programmer,computer scientist
-Jiu-Jitsu,fighter
-Marine,soldier
-field hockey,field hockey
-abstract artist,artist
-horse racing,horse racer
-sex offender,criminal
-ophthalmologist,ophthalmologist
-motorcycle road racer,motorcycle road racer
-computer intelligence consultant,computer scientist
-Catholic church,religious figure
-radio show host,broadcaster
-radio host,broadcaster
-human rights,leader
-biathlete,biathlete
-fraudster,criminal
-drug lord,criminal
-terrorist,criminal
-diplomat,politician
-infectious diseases,infectious diseases scientist
-justice of the Supreme Court,judge
-historian,historian
-judge,judge
-conservationist,conservationist
-police detective,police officer
-painting,artist
-lecturer,lecturer
-pilot,pilot
-cosmonaut,astronaut
-astronaut,astronaut
-video game designer,video game developer
-video game developer,video game developer
-ceo,ceo
-race car driver,race car driver
-television host,television host
-wrestling,wrestler
-BMX rider,BMX rider
+nurse,nurse
+officer,leader
 opera,musician
-phonetician,phonetician
-convicted felon,criminal
-diarist,diarist
-live streamer,youtuber
-R&B,musician
-biochemist,biochemist
-violinist,musician
-crime boss,criminal
-American artist,artist
-surrealist artist,artist
-broadcaster,personality
-primatologist,primatologist
-anthropologist,anthropologist
-illusionist,magician
+ophthalmologist,ophthalmologist
+outlaw,criminal
+painter,artist
+painting,artist
+pair skater,skater
+paleontologist,paleontologist
 performance art,artist
-microbiologist,microbiologist
-vocalist,musician
-pop artist,artist
-sportscaster,broadcaster
-record producer,musician
-sculpture,artist
+personality,influencer
+philanthropist,philanthropist
+philosopher,philosopher
+phonetician,phonetician
+photographer,photographer
 photography,artist
-virologist,virologist
-sultan,leader
-legislator,politician
-cartoonist,artist
-cellist,musician
-medical doctor,doctor
-bacteriologist,bacteriologist
-conductor,musician
-music executive,musician
-first lady,leader
-teacher,scholar
-guitarist,musician
+physician,physician
+physicist,physicist
+pianist,musician
+pilot,pilot
+playwright,author
+poet,author
+police detective,police officer
+political figure,politician
+political,politician
+politician,politician
+polymath,polymath
+pop artist,artist
+president,leader
+priest,religious figure
+primatologist,primatologist
+prime minister,leader
+prince,leader
+professor,scholar
+programmer,computer programmer
+psychiatrist,psychiatrist
+psychologist,psychologist
+psychotherapist,psychotherapist
+public speaker,leader
+queen,leader
+R&B,musician
+race car driver,race car driver
+racing driver,racing driver
+racquetball,racquetball player
+radio host,broadcaster
+radio show host,broadcaster
+rapper,musician
+record producer,musician
+recording artist,musician
 researcher,scholar
-archaeologist,archaeologist
+rock climber,rock climber
+royal family,leader
+rugby,rugby player
+ruler,leader
+runner,runner
+sailor,sailor
+scholar,scholar
+screenwriter,author
+sculptor,artist
+sculpture,artist
+sex offender,criminal
+showman,influencer
+singer,musician
+skateboarder,skateboarder
+ski racer,skier
+skier,skier
+snooker,snooker player
+snowboarder,snowboarder
+soccer,soccer player
+social media personality,influencer
+socialite,influencer
+sociologist,sociologist
+softball player,softball player
+soldier,soldier
+songwriter,musician
+speed skater,speed skater
+speed skating,speed skater
+sportscaster,broadcaster
+sprinter,runner
+statesman,leader
+sultan,leader
+supermodel,model
+surrealist artist,artist
+swimmer,swimmer
+teacher,scholar
 televangelist,personality
-chef,chef
-comics artist,artist
-anarchist,criminal
-ultrarunning,runner
-drummer,musician
-aristocrat,leader
-manga artist,artist
+television host,television host
+television personality,actor
+tennis,tennis player
+terrorist,criminal
 theatre producer,director
 theatrical producer,director
-baron,entrepreneur
-fugitive,criminal
-mafia boss,criminal
-evangelist,religious figure
-game show host,broadcaster
-game designer,game designer
-music producer,musician
-astrophysicist,astrophysicist
-linguist,linguist
+theologian,religious figure
+track and field,track and field star
 trail running,runner
-commanders,leader
-designer,designer
-choreographer,choreographer
-entertainer,personality
-House of Representatives,politician
-cartographer,cartographer
-arrested,criminal
-car driver,race car driver
-neurobiology,neurobiology
-government official,leader
-softball player,softball player
-film critic,author
+triathlete,runner
+ultrarunning,runner
+video game designer,video game developer
+video game developer,video game developer
+video game player,video game player
+violinist,musician
+virologist,virologist
+visual artist,artist
+vocalist,musician
+volleyball player,volleyball player
 weightlifter,weightlifter
-rock climber,rock climber
-adventurer,adventurer
-film maker,director
-mayor,leader
-programmer,computer programmer
-speed skater,speed skater
-convicted,criminal
-india,india
+wrestler,wrestler
+wrestling,wrestler
+writer,author
+YouTube,youtuber
+youtuber,youtuber
+zoologist,zoologist
