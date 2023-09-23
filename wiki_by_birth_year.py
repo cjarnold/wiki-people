@@ -125,10 +125,9 @@ def year_to_filename(year):
 
     return f'{cfg.output_directory}/birth_year_files/{prefix}{year}_births'
 
-# Generator which yields tuples of (page title, ref_count)
-# for all items previously downloaded in the 'year' file.
-def iterate_birth_year_file(year):
-    fname = year_to_filename(year)
+# Generator which yields tuples of (page title, ref_count, year)
+# for all items in fname.
+def iterate_people_file(fname):
     pattern = re.compile('(\d+) -?(\d+) \|(.+)')
 
     with open(fname, 'r', encoding='utf-8') as myfile:
@@ -137,10 +136,17 @@ def iterate_birth_year_file(year):
             match = pattern.match(line)
             if match:
                 ref_count = int(match.group(1))
+                year = int(match.group(2))
                 title = match.group(3)
-                yield (title, ref_count)
+                yield (title, ref_count, year)
             else:
                 print(f'ERROR: Line {line} is not in the correct format')
+
+# Generator which yields tuples of (page title, ref_count, year)
+# for all items previously downloaded in the 'year' file.
+def iterate_birth_year_file(year):
+    fname = year_to_filename(year)
+    yield from iterate_people_file(fname)
 
 def have_birth_year_file(year):
     fname = year_to_filename(year)

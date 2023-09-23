@@ -3,6 +3,7 @@ import wiki_by_birth_year
 import db_wrapper
 import professions
 import sys
+import os
 
 from config import cfg 
 
@@ -24,12 +25,9 @@ def get_summary(title):
 
     return summary
 
-# For all people born in 'year', with reference count above a threshold, does a wiki
-# lookup on the page to get the summary and inserts the information
-# into the 'people' table
-def insert_summaries(year):
-    if not wiki_by_birth_year.have_birth_year_file(year):
-        print(f'ERROR: Birth year file for year {year} was not found')
+def insert_summaries_for_file(fname):
+    if not os.path.exists(fname):
+        print(f'ERROR: file {fname} was not found')
         return False
 
     db_wrapper.initialize_tables()
@@ -38,7 +36,7 @@ def insert_summaries(year):
     skip_low_ref = 0
     skip_already_have = 0
 
-    for title, ref_count in wiki_by_birth_year.iterate_birth_year_file(year):
+    for title, ref_count, year in wiki_by_birth_year.iterate_people_file(fname):
         if ref_count >= cfg.min_ref_count_for_summary:
             with db_wrapper.DBManager() as cur:
                 res = cur.execute("select title from people where title = ?", (title,) )
@@ -60,6 +58,13 @@ def insert_summaries(year):
     print(f'Database now contains {db_wrapper.get_people_count()} people')
 
     return True
+
+# For all people born in 'year', with reference count above a threshold, does a wiki
+# lookup on the page to get the summary and inserts the information
+# into the 'people' table
+def insert_summaries_for_year(year):
+    fname = wiki_by_birth_year.year_to_filename(year)
+    return insert_summaries_for_file(fname)
 
 def print_details(title):
     with db_wrapper.DBManager() as cur:

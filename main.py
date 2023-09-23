@@ -20,10 +20,14 @@ def do_year_range(year_start, year_end):
     for year in range(year_start, year_end + 1):
         print(f'\n====== Working on year {year} ======')
         wiki_by_birth_year.write_birth_year_file(year)
-        wiki_summary.insert_summaries(year)
+        wiki_summary.insert_summaries_for_year(year)
 
     print('')
     professions.apply_keyword_to_professions()
+
+def do_backfill(fname):
+    print("Backfill")
+    wiki_summary.insert_summaries_for_file(fname)
 
 def validate_summary_arg(value):
     value = value.lstrip()
@@ -58,6 +62,11 @@ group.add_argument("-s", "--summary",
                     type=validate_summary_arg,
                     metavar="YEAR-START:YEAR-END",
                     help="Fetch a summary from Wikipedia and store it in the DB for all people whose birth year is within the provided range and reference count meets the threshold defined in config.yaml")
+
+group.add_argument("-b", "--backfill",
+                    required=False,
+                    metavar="FILENAME",
+                    help="Insert each person into the database if they meet the reference count criteria")
 
 group.add_argument("-i", "--images",
                     required=False,
@@ -107,4 +116,6 @@ elif args.details:
     wiki_summary.print_details(args.details)
 elif args.profession_members:
     professions.print_profession_members(args.profession_members)
+elif args.backfill:
+    do_backfill(args.backfill)
 
